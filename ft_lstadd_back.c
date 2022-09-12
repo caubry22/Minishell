@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 20:54:34 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 15:17:54 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/12 15:53:24 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_cmd	*ft_lstadd_back(t_cmd **alst, t_cmd *new)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;
-		// new->next = NULL;
+		new->next = NULL;
 	}
 	return (new);
 }

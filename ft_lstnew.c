@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 20:18:53 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 15:18:10 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/12 15:52:23 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_cmd	*ft_lstnew(int j, char **cmd, int dup)
 	list->arg = malloc(sizeof(char *) * (j + 1));
 	if (!list->arg)
 		return (NULL);
-	while (i <= j && cmd[dup + i])
+	while (i < j && cmd[dup + i])
 	{
 		// printf("arg[i] %s\n", cmd[dup + i]);
 		// printf("cmd[dup + i] %s\n", cmd[dup + i]);

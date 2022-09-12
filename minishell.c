@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:32:01 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 15:30:08 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:01:28 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int main(int ac, char **av, char **envp)
             printf("dup = %d\n", dup);
             while (cmd[i] && ft_strcmp(cmd[i], "|"))
             {
-                // printf("ICI????\n");
+                printf("ICI????\n");
                 i++;
                 j++;
             }
@@ -128,7 +128,7 @@ int main(int ac, char **av, char **envp)
         }
         // test = ft_lstnew(cmd);
         a = 0;
-        while (first->arg[a])
+        while (first && first->arg[a])
         {
             while (first->arg[a])
             {
@@ -137,7 +137,11 @@ int main(int ac, char **av, char **envp)
             }
             // i = 0;
             // first = first->next;
+            printf("testcrassh\n");
+            a = 0;
+            first = first->next;
         }
+        // printf("FINFIN = %s ", first->next->arg[0]);
         free(first);
         printf("\n");
         // ft_cmd(cmd);
