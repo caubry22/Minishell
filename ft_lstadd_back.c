@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 20:54:34 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 15:53:24 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:09:12 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ t_cmd	*ft_lstadd_back(t_cmd **alst, t_cmd *new)
 	// printf("new arg = %s\n", new->arg[0]);
 	if (!(*alst))
 	{
-		printf("new list\n");
+		// printf("new list\n");
 		(*alst) = new;
 	}
 	else
 	{
-		printf("la\n");
+		// printf("la\n");
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new;

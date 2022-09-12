@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:32:01 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 16:01:28 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/12 16:09:45 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int ft_echo(char **cmd, int i, int n)
     {
         if ((i > 1 && n == 0) || i > 2)
             printf(" ");
-        printf("%s", cmd[i]);
+        // printf("%s", cmd[i]);
         i++;
     }
     if (!n)
@@ -109,10 +109,10 @@ int main(int ac, char **av, char **envp)
         {
             j = 0;
             dup = i;
-            printf("dup = %d\n", dup);
+            // printf("dup = %d\n", dup);
             while (cmd[i] && ft_strcmp(cmd[i], "|"))
             {
-                printf("ICI????\n");
+                // printf("ICI????\n");
                 i++;
                 j++;
             }
@@ -137,7 +137,8 @@ int main(int ac, char **av, char **envp)
             }
             // i = 0;
             // first = first->next;
-            printf("testcrassh\n");
+            // printf("testcrassh\n");
+            printf("\n");
             a = 0;
             first = first->next;
         }
