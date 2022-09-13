@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:32:01 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 16:09:45 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/13 09:24:53 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,83 +72,93 @@ int ft_cmd(char **cmd)
     return(1);
 }
 
+int ft_erreur(int erreur)
+{
+    if (erreur == 1)
+        printf("Il ne faut pas mettre d'arguments\n");
+    return (0);
+}
+
+void  ft_printcmd(t_cmd **first)
+{
+    t_cmd *lst;
+    int i;
+
+    lst = *first;
+    i = 0;
+    while (lst && lst->arg[i])
+    {
+        while (lst->arg[i])
+        {
+            if (i == 0)
+                printf("Nouvelle commande = ");
+            printf("%s ", lst->arg[i]);
+            i++;
+        }
+        printf("\n");
+        lst = lst->next;
+        i = 0;
+    }
+}
+
+void ft_initcmd(t_cmd **first, char **cmd)
+{
+    int i;
+    int j;
+    int dup;
+
+    i = 0;
+    while (cmd[i])
+    {
+        j = 0;
+        dup = i;
+        while (cmd[i] && ft_strcmp(cmd[i], "|"))
+        {
+            i++;
+            j++;
+        }
+        ft_lstadd_back(first, ft_lstnew(j, cmd, dup));
+        j = 0;
+        if (cmd[i])
+            i++;
+    }
+}
+
+void ft_minishell(char *line)
+{
+    t_cmd *first;
+    char **cmd;
+
+    first = NULL;
+    cmd = ft_split(line);
+    if (!cmd)
+        printf("Erreur de saisie\n");
+    ft_initcmd(&first, cmd);
+    ft_printcmd(&first);
+    free(first);
+}
+
 int main(int ac, char **av, char **envp)
 {
     static char *line;
-    char **cmd;
     int quit;
     (void)**envp;
     int i;
-    int j;
-    int a;
-    t_cmd *first;
-    t_cmd *new;
-    int dup;
 
     line = NULL;
     quit = 0;
     i = 0;
     if (ac > 1 && av[0]) 
-    {
-        printf("Il ne faut pas mettre d'arguments\n");
-        return (0);
-    }
+        return (ft_erreur(1));
     while (!quit)
     {
-        first = NULL;
-        i = 0;
         if (line)
             free(line);
         line = readline("?>");
         if (line && *line)
             add_history(line);
-        cmd = ft_split(line);
-        if (!cmd)
-            printf("Erreur de saisie\n");
-        while (cmd[i])
-        {
-            j = 0;
-            dup = i;
-            // printf("dup = %d\n", dup);
-            while (cmd[i] && ft_strcmp(cmd[i], "|"))
-            {
-                // printf("ICI????\n");
-                i++;
-                j++;
-            }
-            new = ft_lstadd_back(&first, ft_lstnew(j, cmd, dup));
-            // printf("first arg = %s\n", first->arg[0]);
-            j = 0;
-            // printf("cmd[dup] = %s\n", cmd[dup]);
-            printf("new->arg[%d] = %s\n", j, new->arg[0]);
-            // printf("cmd[i] avant = %s\n", cmd[i]);
-            if (cmd[i])
-                i++;
-            // printf("cmd[i] apres = %s\n", cmd[i]);
-        }
-        // test = ft_lstnew(cmd);
-        a = 0;
-        while (first && first->arg[a])
-        {
-            while (first->arg[a])
-            {
-                printf("FIN = %s ", first->arg[a]);
-                a++;
-            }
-            // i = 0;
-            // first = first->next;
-            // printf("testcrassh\n");
-            printf("\n");
-            a = 0;
-            first = first->next;
-        }
-        // printf("FINFIN = %s ", first->next->arg[0]);
-        free(first);
-        printf("\n");
-        // ft_cmd(cmd);
-        // printf("nombre de token %d\n", ft_nbtoken(line));
+        ft_minishell(line);
     }
-    i = 0;
     while (envp[i])
     {
         printf("%s\n",envp[i]);
