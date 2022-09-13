@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 23:21:02 by caubry            #+#    #+#             */
-/*   Updated: 2021/01/04 18:45:30 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/13 10:15:12 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static size_t	ft_strsize(char const *str)
 {
-	size_t n;
+	size_t	n;
 
 	n = 0;
 	while (str[n])
@@ -22,7 +22,7 @@ static size_t	ft_strsize(char const *str)
 	return (n);
 }
 
-static char		*ft_dup(char *dst, char const *src, size_t k)
+static char	*ft_dup(char *dst, char const *src, size_t k)
 {
 	while (*src)
 	{
@@ -33,7 +33,7 @@ static char		*ft_dup(char *dst, char const *src, size_t k)
 	return (dst);
 }
 
-char			*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*join;
 	size_t	s1len;
@@ -45,7 +45,8 @@ char			*ft_strjoin(char const *s1, char const *s2)
 	s1len = ft_strsize(s1);
 	s2len = ft_strsize(s2);
 	jlen = 0;
-	if (!(join = (char *)malloc(sizeof(char) * (s1len + s2len + 1))))
+	join = (char *)malloc(sizeof(char) * (s1len + s2len + 1));
+	if (!join)
 		return (NULL);
 	ft_dup(join, s1, jlen);
 	jlen = jlen + s1len;

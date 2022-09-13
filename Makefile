@@ -6,7 +6,7 @@
 #    By: caubry <caubry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 15:44:32 by caubry            #+#    #+#              #
-#    Updated: 2022/09/12 15:01:58 by caubry           ###   ########.fr        #
+#    Updated: 2022/09/13 11:25:36 by caubry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,10 @@ SRC =	minishell.c \
 		ft_strcmp.c \
 		ft_lstnew.c \
 		ft_strdup.c \
-		ft_lstadd_back.c
+		ft_lstadd_back.c \
+		ft_lenmot.c \
+		ft_nbtoken.c \
+		ft_free.c
       
 OBJ = ${SRC:.c=.o}
 

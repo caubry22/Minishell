@@ -6,18 +6,18 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:23:42 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 14:58:06 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/13 11:34:23 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 typedef struct s_cmd
 {
@@ -33,5 +33,9 @@ int ft_nbtoken(char *s);
 t_cmd	*ft_lstnew(int j, char **cmd, int dup);
 t_cmd *ft_lstadd_back(t_cmd **alst, t_cmd *new);
 char		*ft_strdup(const char *s1);
+int	ft_nbtoken(char *s);
+int	ft_lenmot(char *s);
+char		*ft_strchr(const char *s, int c);
+char	**ft_free(char **split);
 
 #endif

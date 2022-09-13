@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/10 20:54:34 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/13 09:41:29 by caubry           ###   ########.fr       */
+/*   Created: 2022/09/13 11:25:17 by caubry            #+#    #+#             */
+/*   Updated: 2022/09/13 11:29:31 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd	*ft_lstadd_back(t_cmd **alst, t_cmd *new)
+char	**ft_free(char **split)
 {
-	t_cmd	*tmp;
+	size_t	i;
 
-	tmp = (*alst);
-	if (!(*alst))
+	i = 0;
+	while (split[i])
 	{
-		(*alst) = new;
+		free (split[i]);
+		i++;
 	}
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-		new->next = NULL;
-	}
-	return (new);
+	free(split);
+	return (NULL);
 }

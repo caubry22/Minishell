@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:32:01 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/13 09:24:53 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/13 11:26:49 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int ft_cmd(char **cmd)
     //     ft_exit(cmd);
     else
         printf("Command '%s' not found\n", cmd[0]);
-    return(1);
+    return (1);
 }
 
 int ft_erreur(int erreur)
@@ -81,8 +81,8 @@ int ft_erreur(int erreur)
 
 void  ft_printcmd(t_cmd **first)
 {
-    t_cmd *lst;
-    int i;
+    t_cmd   *lst;
+    int     i;
 
     lst = *first;
     i = 0;

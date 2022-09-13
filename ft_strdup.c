@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 15:13:01 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/12 12:31:09 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/13 10:16:16 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_len(char *s1)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (*s1)
@@ -25,7 +25,7 @@ static int	ft_len(char *s1)
 	return (len);
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		len;
 	int		i;
@@ -35,7 +35,8 @@ char		*ft_strdup(const char *s1)
 	i = 0;
 	c1 = (char *)s1;
 	len = ft_len(c1);
-	if (!(dup = (char *)malloc(sizeof(char) * (len + 1))))
+	dup = (char *)malloc(sizeof(char) * (len + 1));
+	if (!dup)
 		return (NULL);
 	while (*c1)
 	{
