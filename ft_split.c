@@ -5,100 +5,92 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/13 11:07:20 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/13 11:25:08 by caubry           ###   ########.fr       */
+/*   Created: 2020/12/10 17:31:49 by caubry            #+#    #+#             */
+/*   Updated: 2022/09/14 15:05:21 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ft_len(const char *s)
+int	ft_nbmot(char *s, char c)
 {
-	int	t;
+	int	nbmot;
 
-	t = 0;
+	nbmot = 0;
 	while (*s)
 	{
-		t++;
-		s++;
+		if (*s != c)
+		{
+			nbmot++;
+			while (*s != c && *s)
+				s++;
+		}
+		while (*s == c && *s)
+			s++;
 	}
-	return (t);
+	return (nbmot);
 }
 
-char	*ft_strchr(const char *s, int c)
-{
-	int				size;
-	unsigned char	a;
-
-	size = ft_len(s);
-	a = (unsigned char)c;
-	s = s + size;
-	while (size >= 0)
-	{
-		if (*s == a)
-			return ((char *)s);
-		s--;
-		size--;
-	}
-	return (NULL);
-}
-
-char	*ft_fillsplit(char *mot, char *str, int len)
+char	*ft_fillsplitcmd(char *mot, char *str, char c)
 {
 	int	i;
 
 	i = 0;
-	if (ft_strchr("'\"", *str))
-		str++;
-	while (*str && len)
+	while (*str && *str != c)
 	{
 		mot[i] = *str;
 		i++;
-		len--;
 		str++;
 	}
 	mot[i] = 0;
 	return (mot);
 }
 
-char	**ft_algosplit(char *str, char **split, int mot)
+int	ft_lenmotcmd(char *s, char c)
 {
-	int	k;
+	int	n;
+
+	n = 0;
+	while (*s && *s != c)
+	{
+		n++;
+		s++;
+	}
+	return (n);
+}
+
+char	**ft_splitboucle(char *str, char **split, char c)
+{
+	int k;
 	int	len;
 
 	k = 0;
-	while (*str && k < mot)
+	while (*str && k < 7)
 	{
-		while ((*str == ' ' || *str == 11) && *str)
+		while (*str == c && *str)
 			str++;
-		len = ft_lenmot(str);
+		len = ft_lenmotcmd(str, c);
 		split[k] = (char *)malloc(sizeof(char) * (len + 1));
 		if (!split[k])
 			return (ft_free(split));
-		split[k] = ft_fillsplit(split[k], str, len);
-		if (ft_strchr("'\"", *str))
-			len = len + 2;
+		split[k] = ft_fillsplitcmd(split[k], str, c);
 		str = str + len;
 		k++;
 	}
 	split[k] = NULL;
-	return (split);
+	return(split);
 }
 
-char	**ft_split(char const *s)
+char	**ft_split(char const *s, char c)
 {
 	char	*str;
 	char	**split;
-	int		mot;
 
 	str = (char *)s;
 	if (!str)
 		return (NULL);
-	mot = ft_nbtoken(str);
-	if (mot < 0)
-		return (NULL);
-	split = (char **)malloc(sizeof(char *) * (mot + 1));
+	split = (char **)malloc(sizeof(char *) * 8);
 	if (!split)
 		return (NULL);
-	return (ft_algosplit(str, split, mot));
+	return (ft_splitboucle(str, split, c));
 }

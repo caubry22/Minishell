@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:32:01 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/13 12:15:51 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/14 12:10:47 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,25 +78,35 @@ int	ft_erreur(int erreur)
 	return (0);
 }
 
-void	ft_printcmd(t_cmd **first)
+void	ft_printcmd(t_cmd **first, char **envp)
 {
 	t_cmd	*lst;
 	int		i;
+	int		n;
+	(void) envp;
 
 	lst = *first;
 	i = 0;
+	n = 1;
 	while (lst && lst->arg[i])
 	{
 		while (lst->arg[i])
 		{
 			if (i == 0)
-				printf("Nouvelle commande = ");
+			{
+				printf("%d = ", n);
+			}
 			printf("%s ", lst->arg[i]);
 			i++;
 		}
+		if (ft_isbuiltin(lst->arg[0]))
+			printf("commande valide !");
+		else
+			printf("commande non valide :(");
 		printf("\n");
 		lst = lst->next;
 		i = 0;
+		n++;
 	}
 }
 
@@ -123,30 +133,27 @@ void	ft_initcmd(t_cmd **first, char **cmd)
 	}
 }
 
-void	ft_minishell(char *line)
+void	ft_minishell(char *line, char **envp)
 {
 	t_cmd	*first;
 	char	**cmd;
 
 	first = NULL;
-	cmd = ft_split(line);
+	cmd = ft_cmdsplit(line);
 	if (!cmd)
 		printf("Erreur de saisie\n");
 	ft_initcmd(&first, cmd);
-	ft_printcmd(&first);
+	ft_printcmd(&first, envp);
 	free(first);
 }
 
 int	main(int ac, char **av, char **envp)
 {
 	static char	*line;
-	int		quit;
-	(void)		**envp;
-	int		i;
+	int	quit;
 
 	line = NULL;
 	quit = 0;
-	i = 0;
 	if (ac > 1 && av[0]) 
 		return (ft_erreur(1));
 	while (!quit)
@@ -156,12 +163,7 @@ int	main(int ac, char **av, char **envp)
 		line = readline("?>");
 		if (line && *line)
 		add_history(line);
-		ft_minishell(line);
-	}
-	while (envp[i])
-	{
-		printf("%s\n",envp[i]);
-		i++;
+		ft_minishell(line, envp);
 	}
 	return (0);
 }

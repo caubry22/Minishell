@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 11:03:44 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/13 11:05:56 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/14 16:02:36 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ char	*ft_sepcmd(char *s, int *nbtoken)
 	return (s);
 }
 
+char	*ft_space(char *s, int *nbtoken)
+{
+	if (*s && ft_strchr(" ", *s))
+	{
+		(*nbtoken)++;
+		while (*s && ft_strchr(" ", *s))
+			s++;
+	}
+	return (s);
+}
+
+
 int	ft_nbtoken(char *s)
 {
 	int	nbtoken;
@@ -76,8 +88,7 @@ int	ft_nbtoken(char *s)
 		}
 		s = ft_redirection(s, &quote, &nbtoken);
 		s = ft_sepcmd(s, &nbtoken);
-		while (*s == ' ' && *s)
-			s++;
+		s = ft_space(s, &nbtoken);
 	}
 	if (quote != 0)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: caubry <caubry@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:23:42 by caubry            #+#    #+#             */
-/*   Updated: 2022/09/13 11:34:23 by caubry           ###   ########.fr       */
+/*   Updated: 2022/09/14 14:52:46 by caubry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_cmd
     struct s_cmd *next;
 }       t_cmd;
 
-char	**ft_split(char const *s);
+char	**ft_cmdsplit(char const *s);
 int	ft_strcmp(const char *s1, const char *s2);
 int ft_nbtoken(char *s);
 t_cmd	*ft_lstnew(int j, char **cmd, int dup);
@@ -37,5 +37,7 @@ int	ft_nbtoken(char *s);
 int	ft_lenmot(char *s);
 char		*ft_strchr(const char *s, int c);
 char	**ft_free(char **split);
+int ft_isbuiltin(char *word);
+char	**ft_split(char const *s, char c);
 
 #endif

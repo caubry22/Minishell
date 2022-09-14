@@ -6,16 +6,17 @@
 #    By: caubry <caubry@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 15:44:32 by caubry            #+#    #+#              #
-#    Updated: 2022/09/13 11:25:36 by caubry           ###   ########.fr        #
+#    Updated: 2022/09/14 12:07:59 by caubry           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 NAME = minishell
 
 SRC =	minishell.c \
+		ft_cmdsplit.c \
 		ft_split.c \
 		ft_strcmp.c \
 		ft_lstnew.c \
@@ -23,7 +24,8 @@ SRC =	minishell.c \
 		ft_lstadd_back.c \
 		ft_lenmot.c \
 		ft_nbtoken.c \
-		ft_free.c
+		ft_free.c \
+		ft_builtin.c
       
 OBJ = ${SRC:.c=.o}
 
