@@ -14,6 +14,8 @@
 
 void	ft_exit(t_lexer *lexer)
 {
-	printf("Entered in ft_exit, my builtin.\n");
 	(void)lexer;
+
+	// ft_empty_trash();
+	exit (EXIT_FAILURE);
 }

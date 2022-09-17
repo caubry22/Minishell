@@ -14,5 +14,11 @@
 
 void	ft_pwd(t_lexer *lexer)
 {
+	char *path;
 	(void)lexer;
+
+	path = (char *)getcwd(NULL, 1000);
+	if (!path || !ft_add_trash((void *)path))
+		return (ft_empty_trash());
+	printf("%s\n", path);
 }

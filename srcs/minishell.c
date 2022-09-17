@@ -112,6 +112,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!line)
 			return (ft_empty_trash(), 1);
 		if (ft_check_quote(line))
+			// Revoir le comportement si les guillemets ne sont pas fermes, un peu style heredocs ???
 			free(line);
 		else
 			ft_main_parser(line);

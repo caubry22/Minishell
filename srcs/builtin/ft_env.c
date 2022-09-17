@@ -14,6 +14,16 @@
 
 void	ft_env(t_lexer *lexer)
 {
-	printf("Entered in ft_env, my builtin.\n");
+	t_env **env;
+	t_env *tmp;
 	(void)lexer;
+
+	env = ft_get_env();
+	tmp = *env;
+	while (tmp)
+	{
+		printf("%s\n", tmp->env_name);
+		tmp = tmp->next;
+	}
+	// VOIR POUR LA VARIABLE $SHLVL
 }
